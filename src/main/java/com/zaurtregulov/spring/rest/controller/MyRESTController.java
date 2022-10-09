@@ -39,23 +39,4 @@ public class MyRESTController {
 
     return employee;
   }
-
-  //данной аанотацией помечаются метод,ответственный за обработку исключений
-  @ExceptionHandler
-  public ResponseEntity<EmployeeIncorrectData> handleException(NoSuchEmployeeException exception) {
-    EmployeeIncorrectData data = new EmployeeIncorrectData();
-    //вносим информацию-сообщение,полученную из исключения
-    data.setInfo(exception.getMessage());
-    //возвращаем информацию.Первый параметр - объект,ответственный за JSON,второй - статус HTTP response
-    return new ResponseEntity<>(data, HttpStatus.NOT_FOUND);
-  }
-
-  @ExceptionHandler
-  public ResponseEntity<EmployeeIncorrectData> handleException(Exception exception) {
-    EmployeeIncorrectData data = new EmployeeIncorrectData();
-    //вносим информацию-сообщение,полученную из исключения
-    data.setInfo(exception.getMessage());
-    //возвращаем информацию.Первый параметр - объект,ответственный за JSON,второй - статус HTTP response
-    return new ResponseEntity<>(data, HttpStatus.BAD_REQUEST);
-  }
 }
